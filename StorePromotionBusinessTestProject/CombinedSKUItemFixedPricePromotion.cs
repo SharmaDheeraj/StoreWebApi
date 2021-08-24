@@ -2,7 +2,7 @@
 
 namespace StorePromotionBusinessTestProject
 {
-    public class CombinedSKUItemFixedPricePromotion
+    public class CombinedSKUItemFixedPricePromotion : PromotionRule
     {
         private List<string> list;
         private int v;

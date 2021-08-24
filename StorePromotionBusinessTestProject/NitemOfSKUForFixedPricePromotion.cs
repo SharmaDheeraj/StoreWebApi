@@ -1,6 +1,6 @@
 ﻿namespace StorePromotionBusinessTestProject
 {
-    public class NitemOfSKUForFixedPricePromotion
+    public class NitemOfSKUForFixedPricePromotion : PromotionRule
     {
         private string v1;
         private int v2;
