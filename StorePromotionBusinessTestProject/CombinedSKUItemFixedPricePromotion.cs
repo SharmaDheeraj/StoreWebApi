@@ -4,13 +4,15 @@ namespace StorePromotionBusinessTestProject
 {
     public class CombinedSKUItemFixedPricePromotion : PromotionRule
     {
-        private List<string> list;
-        private int v;
-
+        public List<string> SKUs { get; internal set; }
+        public int FixedPrice { get; internal set; }
+        public string Name { get; internal set; }
         public CombinedSKUItemFixedPricePromotion(List<string> list, int v)
         {
-            this.list = list;
-            this.v = v;
+            this.SKUs = list;
+            this.FixedPrice = v;
         }
+
+      
     }
 }
