@@ -1,10 +1,7 @@
 ﻿
 using StorePromotionBusinessLogic.CartData;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StorePromotionBusinessLogic.PromotionRules
 {
@@ -27,19 +24,21 @@ namespace StorePromotionBusinessLogic.PromotionRules
 
         public override void Execute(Cart cart)
         {
-          
+
         }
 
         public override bool IsApplicable(Cart cart)
         {
-            return true;
+            return !IsEmptyCart(cart) &&
+                cart.Items
+                .Where(i => !i.PromotionApplied && SKU.Equals(i.Item.ID))
+                .Count() >= NumberOfItems;
         }
+
         public override string ToString()
         {
             return $"{NumberOfItems} of {SKU}'s for {FixedPrice}";
         }
-
-
 
     }
 }

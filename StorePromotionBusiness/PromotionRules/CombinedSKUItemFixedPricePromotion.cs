@@ -26,7 +26,16 @@ namespace StorePromotionBusinessLogic.PromotionRules
 
         public override bool IsApplicable(Cart cart)
         {
-            return true;
+            if (IsEmptyCart(cart)) return false;
+
+            var cartItemsWithoutPromotion = cart.Items
+                .Where(i => !i.PromotionApplied);
+            var applicable = true;
+            foreach (var sku in SKUs)
+            {
+                applicable &= cartItemsWithoutPromotion.Any(i => sku.Equals(i.Item.ID));
+            }
+            return applicable;
         }
 
         public override string ToString()
