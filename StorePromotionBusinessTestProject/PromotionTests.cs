@@ -66,7 +66,7 @@ namespace StorePromotionBusinessTestProject
 
         private void ApplyPromotionsOnCart()
         {
-            SetupDataForTest.promotions.ForEach(p => { if (p.IsApplicable(cart)) p.Execute(cart); });
+           // SetupDataForTest.promotions.ForEach(p => { if (p.IsApplicable(cart)) p.Execute(cart); });
         }
     }
 }

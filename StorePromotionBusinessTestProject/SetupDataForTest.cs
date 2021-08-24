@@ -1,4 +1,5 @@
-﻿using StorePromotionBusinessLogic.StoreRoom;
+﻿using StorePromotionBusinessLogic.PromotionRules;
+using StorePromotionBusinessLogic.StoreRoom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
