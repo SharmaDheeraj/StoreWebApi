@@ -32,5 +32,28 @@ namespace StorePromotionBusinessTestProject
             Assert.IsTrue(storeresult.Promotions.Count==1);
 
         }
+
+        [Test]
+        public void TestStore_CheckOut()
+        {
+            store.AddItemToCart("A")
+               .AddItemToCart("A")
+               .AddItemToCart("A")
+               .AddItemToCart("A")
+               .AddItemToCart("A")
+               .AddItemToCart("B")
+               .AddItemToCart("B")
+               .AddItemToCart("B")
+               .AddItemToCart("B")
+               .AddItemToCart("B")
+               .AddItemToCart("C")
+               .AddItemToCart("D");
+
+            Assert.AreEqual(420, store.Cart.TotalPrice);
+            Assert.AreEqual(11, store.Cart.Items.Count);
+
+            store.Checkout();
+            Assert.AreEqual(370, store.Cart.TotalPrice);
+        }
     }
 }
