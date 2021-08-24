@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StorePromotionBusinessLogic.CartData;
+using StorePromotionBusinessLogic.StoreRoom;
+using System;
 using System.Collections.Generic;
 
 namespace StorePromotionBusinessTestProject

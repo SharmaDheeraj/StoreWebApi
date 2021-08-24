@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StorePromotionBusinessLogic.CartData;
+using System;
 
 namespace StorePromotionBusinessTestProject
 {
