@@ -24,7 +24,19 @@ namespace StorePromotionBusinessLogic.PromotionRules
 
         public override void Execute(Cart cart)
         {
+            var discountItemPrice = FixedPrice / NumberOfItems;
+            var residue = 0f;
 
+            while (IsApplicable(cart))
+            {
+                residue = FixedPrice - NumberOfItems * discountItemPrice;
+                foreach (var item in cart.Items.Where(i => !i.PromotionApplied && SKU.Equals(i.Item.ID)).Take(NumberOfItems))
+                {
+                    item.FinalPrice = discountItemPrice + residue;
+                    item.PromotionApplied = true;
+                    residue = 0f;
+                }
+            }
         }
 
         public override bool IsApplicable(Cart cart)
@@ -39,6 +51,9 @@ namespace StorePromotionBusinessLogic.PromotionRules
         {
             return $"{NumberOfItems} of {SKU}'s for {FixedPrice}";
         }
+
+
+
 
     }
 }

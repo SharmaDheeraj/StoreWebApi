@@ -21,7 +21,20 @@ namespace StorePromotionBusinessLogic.PromotionRules
 
         public override void Execute(Cart cart)
         {
-           
+            while (IsApplicable(cart))
+            {
+                var unusedSKUs = new List<string>(SKUs);
+
+                foreach (var item in cart.Items.Where(i => !i.PromotionApplied))
+                {
+                    if (unusedSKUs.Contains(item.Item.ID))
+                    {
+                        item.FinalPrice = FixedPrice / SKUs.Count;
+                        item.PromotionApplied = true;
+                        unusedSKUs.Remove(item.Item.ID);
+                    }
+                }
+            }
         }
 
         public override bool IsApplicable(Cart cart)
@@ -42,5 +55,7 @@ namespace StorePromotionBusinessLogic.PromotionRules
         {
             return $"{string.Join(" & ", SKUs)} for {FixedPrice}";
         }
+
+
     }
 }
