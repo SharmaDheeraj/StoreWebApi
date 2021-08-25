@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-
+using StorePromotionBusinessLogic.StoreRoom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +19,12 @@ namespace StorePromotionBusinessTestProject
             store = new Store();
             Store storeresult = store.AddSKUitem(SetupDataForTest.firstItem);
 
-            Assert.IsTrue(store.Items.Contains(SetupDataForTest.firstItem));
+            Assert.IsTrue(store.Items.Count>0);
         }
 
         [Test]
-        public void TestAddPromotion(string promotion)
+        
+        public void TestAddPromotion()
         {
            var store = new Store();
             store.AddSKUitem(SetupDataForTest.firstItem);
@@ -36,18 +37,24 @@ namespace StorePromotionBusinessTestProject
         [Test]
         public void TestStore_CheckOut()
         {
+            store = new Store()
+                  .AddSKUitem(SetupDataForTest.firstItem)
+                  .AddSKUitem(SetupDataForTest.secItem)
+                  .AddSKUitem(SetupDataForTest.thirdItem)
+                  .AddSKUitem(SetupDataForTest.fourthItems)
+                  .AddPromotions(SetupDataForTest.promotions);
+
             store.AddItemToCart("A")
-               .AddItemToCart("A")
-               .AddItemToCart("A")
-               .AddItemToCart("A")
-               .AddItemToCart("A")
-               .AddItemToCart("B")
-               .AddItemToCart("B")
-               .AddItemToCart("B")
-               .AddItemToCart("B")
-               .AddItemToCart("B")
-               .AddItemToCart("C")
-               .AddItemToCart("D");
+                .AddItemToCart("A")
+                .AddItemToCart("A")
+                .AddItemToCart("A")
+                .AddItemToCart("A")
+                .AddItemToCart("B")
+                .AddItemToCart("B")
+                .AddItemToCart("B")
+                .AddItemToCart("B")
+                .AddItemToCart("B")
+                .AddItemToCart("C");
 
             Assert.AreEqual(420, store.Cart.TotalPrice);
             Assert.AreEqual(11, store.Cart.Items.Count);
